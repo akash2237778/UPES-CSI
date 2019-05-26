@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -58,13 +59,15 @@ public class navDrawer extends AppCompatActivity
         firebaseAuthListner = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                user = firebaseAuth.getCurrentUser();
 
-                UserImage = (ImageView) findViewById(R.id.UserImage);
-
-                new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
             }
         };
+        user = firebaseAuth.getCurrentUser();
+
+        UserImage = (ImageView) findViewById(R.id.UserImage);
+       // Log.i("imageURl" , user.getDisplayName() + user.getPhotoUrl() + "dd");
+
+        new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
     }
 
     @Override
