@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class navDrawer extends AppCompatActivity
 Intent intent;
 TextView tname;
 TextView temail;
+ImageView UserImage;
 FirebaseUser user;
 NavigationView navigationView;
 View headerView;
@@ -46,6 +48,10 @@ View headerView;
         tname.setText(user.getDisplayName()+"");
         temail=(TextView) headerView.findViewById(R.id.txtemail);
         temail.setText(user.getEmail()+"");
+        UserImage = (ImageView)headerView.findViewById(R.id.usrImage);
+        // Log.i("imageURl" , user.getDisplayName() + user.getPhotoUrl() + "dd");
+
+        new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
 
         Toast.makeText(getApplicationContext(),user.getDisplayName()+"  "+user.getPhoneNumber()+" "+user.getEmail(),Toast.LENGTH_SHORT).show();
 
@@ -69,6 +75,8 @@ View headerView;
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
