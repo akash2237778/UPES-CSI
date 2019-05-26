@@ -71,13 +71,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         auth.addAuthStateListener(mAuthListener);
-        String currentUser = auth.getCurrentUser().getDisplayName().toString();
-        String Email = auth.getCurrentUser().getEmail().toString();
-        String DPurl = auth.getCurrentUser().getPhotoUrl().toString();
-        String DP = auth.getCurrentUser().getPhoneNumber().toString();
+        if (auth.getCurrentUser() != null) {
+            String currentUser = auth.getCurrentUser().getDisplayName().toString();
+            String Email = auth.getCurrentUser().getEmail().toString();
+            String DPurl = auth.getCurrentUser().getPhotoUrl().toString();
+            String DP = auth.getCurrentUser().getPhoneNumber().toString();
 
 
-        Log.i("phoneNumber","ok" + currentUser + Email + DPurl  + "   f  " + DP);
+            Log.i("phoneNumber", "ok" + currentUser + Email + DPurl + "   f  " + DP);
+        }
     }
 
     private void signIn()
