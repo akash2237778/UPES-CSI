@@ -1,9 +1,11 @@
 package com.example.googleauth;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,20 +15,39 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class navDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 Intent intent;
+TextView tname;
+TextView temail;
+FirebaseUser user;
+NavigationView navigationView;
+View headerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
 
+        navigationView=(NavigationView)findViewById(R.id.nav_view);
+        headerView=navigationView.getHeaderView(0);
+
+        user=FirebaseAuth.getInstance().getCurrentUser();
+
+        tname=(TextView) headerView.findViewById(R.id.txtname);
+        tname.setText(user.getDisplayName()+"");
+        temail=(TextView) headerView.findViewById(R.id.txtemail);
+        temail.setText(user.getEmail()+"");
+
+        Toast.makeText(getApplicationContext(),user.getDisplayName()+"  "+user.getPhoneNumber()+" "+user.getEmail(),Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,7 +77,17 @@ Intent intent;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            new AlertDialog.Builder(this).setTitle("Exit?").setMessage("Are you sure you want to exit?").setNegativeButton(android.R.string.no,null).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //fbLogin.super.onBackPressed();
+
+                    finishAffinity();
+
+                }
+            }).create().show();
+
         }
     }
 
