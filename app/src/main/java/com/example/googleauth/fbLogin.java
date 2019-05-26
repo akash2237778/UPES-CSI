@@ -27,7 +27,7 @@ import java.util.Arrays;
  * Created by Cnf on 8/3/2016.
  */
 public class fbLogin extends AppCompatActivity{
-
+Intent navDrawIntent;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
 
@@ -39,7 +39,7 @@ public class fbLogin extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_fb_login);
-
+navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
         callbackManager = CallbackManager.Factory.create();
 
         loginButton = (LoginButton) findViewById(R.id.btnFB);
@@ -105,8 +105,8 @@ public class fbLogin extends AppCompatActivity{
     }
 
     public void goMainScreen(){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        //Intent intent = new Intent(this, MainActivity.class);
+        navDrawIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(navDrawIntent);
     }
 }
