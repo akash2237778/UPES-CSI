@@ -46,6 +46,7 @@ View headerView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
+        setTitle("UPES-CSI");
 
         navigationView=(NavigationView)findViewById(R.id.nav_view);
         headerView=navigationView.getHeaderView(0);
@@ -57,11 +58,10 @@ View headerView;
         temail=(TextView) headerView.findViewById(R.id.txtemail);
         temail.setText(user.getEmail()+"");
         UserImage = (ImageView)headerView.findViewById(R.id.usrImage);
-        // Log.i("imageURl" , user.getDisplayName() + user.getPhotoUrl() + "dd");
 
         new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
 
-        Toast.makeText(getApplicationContext(),user.getDisplayName()+"  "+user.getPhoneNumber()+" "+user.getEmail(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Logged in as :" + user.getDisplayName(),Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,20 +85,7 @@ View headerView;
         navigationView.setNavigationItemSelectedListener(this);
 
 
-      /*  firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuthListner = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-            }
-        };
-        user = firebaseAuth.getCurrentUser();
-
-        UserImage = (ImageView) findViewById(R.id.UserImage);
-       // Log.i("imageURl" , user.getDisplayName() + user.getPhotoUrl() + "dd");
-
-        new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
-*/
     }
 
     @Override

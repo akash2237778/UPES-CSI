@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         loginIntent = new Intent(getApplicationContext(), fbLogin.class);
         navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
 
-        Toast.makeText(getApplicationContext(),AccessToken.getCurrentAccessToken()+"",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),AccessToken.getCurrentAccessToken()+"",Toast.LENGTH_SHORT).show();
         if (AccessToken.getCurrentAccessToken() == null) {
             goLoginScreen();
         }
