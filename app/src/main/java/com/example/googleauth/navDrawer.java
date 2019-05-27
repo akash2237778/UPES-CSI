@@ -1,10 +1,13 @@
 package com.example.googleauth;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
+
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,17 +18,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class navDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+Intent intent;
+TextView tname;
+TextView temail;
+ImageView UserImage;
+FirebaseUser user;
+NavigationView navigationView;
+View headerView;
 
-    ImageView UserImage;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
-    FirebaseUser user;
 
 
 
@@ -34,9 +46,26 @@ public class navDrawer extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
+
+        navigationView=(NavigationView)findViewById(R.id.nav_view);
+        headerView=navigationView.getHeaderView(0);
+
+        user=FirebaseAuth.getInstance().getCurrentUser();
+
+        tname=(TextView) headerView.findViewById(R.id.txtname);
+        tname.setText(user.getDisplayName()+"");
+        temail=(TextView) headerView.findViewById(R.id.txtemail);
+        temail.setText(user.getEmail()+"");
+        UserImage = (ImageView)headerView.findViewById(R.id.usrImage);
+        // Log.i("imageURl" , user.getDisplayName() + user.getPhotoUrl() + "dd");
+
+        new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
+
+        Toast.makeText(getApplicationContext(),user.getDisplayName()+"  "+user.getPhoneNumber()+" "+user.getEmail(),Toast.LENGTH_SHORT).show();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        intent = new Intent(getApplicationContext(), fbLogin.class);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +84,8 @@ public class navDrawer extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+
+      /*  firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuthListner = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -68,6 +98,7 @@ public class navDrawer extends AppCompatActivity
        // Log.i("imageURl" , user.getDisplayName() + user.getPhotoUrl() + "dd");
 
         new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
+*/
     }
 
     @Override
@@ -76,7 +107,17 @@ public class navDrawer extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            new AlertDialog.Builder(this).setTitle("Exit?").setMessage("Are you sure you want to exit?").setNegativeButton(android.R.string.no,null).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //fbLogin.super.onBackPressed();
+
+                    finishAffinity();
+
+                }
+            }).create().show();
+
         }
     }
 
@@ -118,7 +159,10 @@ public class navDrawer extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.logout) {
+            FirebaseAuth.getInstance().signOut();
+            LoginManager.getInstance().logOut();
+             startActivity(intent);
 
         }
 
@@ -126,4 +170,5 @@ public class navDrawer extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
