@@ -8,13 +8,7 @@
     tools:context=".MainActivity"
     android:background="#000000">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleBtn"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginTop="48dp">
 
-    </com.google.android.gms.common.SignInButton>
 
     <Button
         android:id="@+id/btnFB"

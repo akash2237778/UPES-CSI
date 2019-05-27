@@ -16,7 +16,6 @@
             android:name=".navDrawer"
             android:label="@string/title_activity_nav_drawer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SecondOne" />
         <activity android:name=".fbLogin" />
         <activity android:name=".MainActivity"/>
         <activity

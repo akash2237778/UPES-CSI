@@ -43,9 +43,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(loginIntent);
     }
 
-   /* public void logout(View view) {
-        LoginManager.getInstance().logOut();
-        goLoginScreen();
-    }
-    */
 }

@@ -1,8 +1,10 @@
 package com.example.googleauth;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -40,7 +42,8 @@ Intent navDrawIntent;
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_fb_login);
 navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
-        callbackManager = CallbackManager.Factory.create();
+
+callbackManager = CallbackManager.Factory.create();
 
         loginButton = (LoginButton) findViewById(R.id.btnFB);
 
@@ -108,5 +111,19 @@ navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
         //Intent intent = new Intent(this, MainActivity.class);
         navDrawIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(navDrawIntent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this).setTitle("Exit?").setMessage("Are you sure you want to exit?").setNegativeButton(android.R.string.no,null).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //fbLogin.super.onBackPressed();
+
+                        finishAffinity();
+
+                    }
+                }).create().show();
+
     }
 }
