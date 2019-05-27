@@ -30,8 +30,8 @@
                 android:title="Share" />
             <item
                 android:id="@+id/logout"
-                android:icon="@drawable/ic_menu_send"
-                android:title="LogOut" />
+                android:icon="@drawable/logoutbutton"
+                android:title="Logout" />
         </menu>
     </item>
 

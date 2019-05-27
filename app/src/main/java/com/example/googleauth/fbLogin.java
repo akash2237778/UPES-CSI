@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -35,15 +37,18 @@ Intent navDrawIntent;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
+    private  ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_fb_login);
-navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
+        navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-callbackManager = CallbackManager.Factory.create();
+
+        callbackManager = CallbackManager.Factory.create();
 
         loginButton = (LoginButton) findViewById(R.id.btnFB);
 
@@ -52,6 +57,9 @@ callbackManager = CallbackManager.Factory.create();
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
+                progressBar.setVisibility(View.VISIBLE);
+                loginButton.setVisibility(View.INVISIBLE);
+
             }
 
             @Override
@@ -71,6 +79,7 @@ callbackManager = CallbackManager.Factory.create();
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
+
                     goMainScreen();
                 }
             }
