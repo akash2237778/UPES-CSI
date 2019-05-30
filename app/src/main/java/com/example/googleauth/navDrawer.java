@@ -34,6 +34,7 @@ ImageView UserImage;
 FirebaseUser user;
 NavigationView navigationView;
 View headerView;
+Intent ProfileIntent;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
@@ -49,6 +50,8 @@ View headerView;
         headerView=navigationView.getHeaderView(0);
 
         user=FirebaseAuth.getInstance().getCurrentUser();
+
+        ProfileIntent = new Intent(getApplicationContext() , profile.class);
 
         tname=(TextView) headerView.findViewById(R.id.txtname);
         tname.setText(user.getDisplayName()+"");
@@ -131,7 +134,7 @@ View headerView;
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            // Handle the camera action
+            startActivity(ProfileIntent);
         } else if (id == R.id.nav_home) {
 
         } else if (id == R.id.nav_about) {
