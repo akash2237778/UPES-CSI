@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 
@@ -32,25 +36,48 @@ import java.util.Arrays;
  */
 public class fbLogin extends AppCompatActivity{
 Intent navDrawIntent;
+Intent MainActivityIntent;
+String phoneNumber;
+
     private LoginButton loginButton;
     private CallbackManager callbackManager;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
     private  ProgressBar progressBar;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    EditText signUpPhoneTxt;
+
+
+
+    public void UpdateFireBase(FirebaseUser user , String phoneNumber) {
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Users");
+
+        databaseReference.child(user.getUid()).child("Name").setValue(user.getDisplayName());
+        databaseReference.child(user.getUid()).child("Phone Number").setValue(phoneNumber);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_fb_login);
-        navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 
         callbackManager = CallbackManager.Factory.create();
 
         loginButton = (LoginButton) findViewById(R.id.btnFB);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        signUpPhoneTxt = (EditText)findViewById(R.id.phoneEditText);
+
+
+        navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
+        MainActivityIntent = getIntent();
+
 
         loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -78,9 +105,11 @@ Intent navDrawIntent;
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null){
-
-                    goMainScreen();
+                if(user != null) {
+                    if (signUpPhoneTxt.getText().length() == 10) {
+                       UpdateFireBase(user , signUpPhoneTxt.getText().toString());
+                         goMainScreen();
+                    }
                 }
             }
         };
