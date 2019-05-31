@@ -3,6 +3,7 @@ package com.example.googleauth;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +21,7 @@ public class profile extends AppCompatActivity {
     TextView NameTxtV;
     TextView EmailTxtv;
     TextView PhoneTxtv;
-    TextView Txtv;
+    ImageView UserImage;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -39,12 +40,14 @@ public class profile extends AppCompatActivity {
         NameTxtV = (TextView)findViewById(R.id.txtName);
         EmailTxtv = (TextView)findViewById(R.id.textEmail);
         PhoneTxtv = (TextView)findViewById(R.id.txtPhone);
-        Txtv = (TextView)findViewById(R.id.textView);
+        UserImage = (ImageView)findViewById(R.id.UserImage);
 
 
         NameTxtV.setText(user.getDisplayName());
         EmailTxtv.setText(user.getEmail());
 
+
+        new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
 
 
 

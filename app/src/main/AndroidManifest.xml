@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".contactAct"></activity>
+        <activity android:name=".TeamAct" />
+        <activity android:name=".BlogAct" />
         <activity android:name=".aboutAct" />
         <activity android:name=".profile" />
         <activity

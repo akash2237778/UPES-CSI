@@ -38,6 +38,9 @@ View headerView;
 Intent ProfileIntent;
 Intent AboutIntent;
 Intent HomeIntent;
+Intent BlogIntent;
+Intent TeamIntent;
+Intent ContactIntent;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
@@ -65,6 +68,9 @@ Intent HomeIntent;
         ProfileIntent = new Intent(getApplicationContext() , profile.class);
         AboutIntent = new Intent(getApplicationContext() , aboutAct.class);
         HomeIntent = new Intent(getApplicationContext(),navDrawer.class);
+        BlogIntent = new Intent(getApplicationContext(),BlogAct.class);
+        TeamIntent = new Intent(getApplicationContext(),TeamAct.class);
+        ContactIntent = new Intent(getApplicationContext(),contactAct.class);
 
         tname=(TextView) headerView.findViewById(R.id.txtname);
         tname.setText(user.getDisplayName()+"");
@@ -153,11 +159,11 @@ Intent HomeIntent;
         } else if (id == R.id.nav_about) {
             startActivity(AboutIntent);
         } else if (id == R.id.nav_blog) {
-
+            startActivity(BlogIntent);
         } else if (id == R.id.nav_team) {
-
+            startActivity(TeamIntent);
         }else if (id == R.id.nav_contact) {
-
+            startActivity(ContactIntent);
         }else if (id == R.id.nav_share) {
 
         }

@@ -57,6 +57,7 @@ String phoneNumber;
         databaseReference = firebaseDatabase.getReference("Users");
 
         databaseReference.child(user.getUid()).child("Name").setValue(user.getDisplayName());
+        databaseReference.child(user.getUid()).child("Email").setValue(user.getEmail());
         databaseReference.child(user.getUid()).child("Phone Number").setValue(phoneNumber);
 
     }

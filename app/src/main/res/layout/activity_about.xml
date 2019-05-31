@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#470DDF"
     tools:context=".aboutAct">
 
     <TextView
@@ -12,7 +13,10 @@
         android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:gravity="center"
         android:text="We provide best platform"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +32,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:text="With the burning desire and enthusiasm to be different from the crowd, UPES CSI Student Chapter was established in the year 2010 and is one of the most active chapters of University of Petroleum and Energy Studies. The Society focuses on Scientific and Educational programs directed towards the development of theory and practice of Computer Science and Technology. The Chapter organizes many Technical and Fun Events, Seminars, Conferences, Regional as well as National Student Convention with the sole purpose of imbibing the very motto of &quot;CREATE, SHARE and INNOVATE&quot; among the students ultimately bagging the 'Best Student Branch Chapter Award' five times in a row. What sets us apart from other student chapters is the passion and dedication with which we work in order to enhance our personality and skillset.  "
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -39,11 +44,12 @@
         android:id="@+id/logo"
         android:layout_width="177dp"
         android:layout_height="170dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/AboutPara"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.169"
+        app:layout_constraintVertical_bias="0.862"
         app:srcCompat="@drawable/logo" />
 
     <ImageView
