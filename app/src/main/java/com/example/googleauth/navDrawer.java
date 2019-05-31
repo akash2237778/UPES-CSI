@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -36,9 +37,13 @@ NavigationView navigationView;
 View headerView;
 Intent ProfileIntent;
 Intent AboutIntent;
+Intent HomeIntent;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
+    private ViewPager mPager;
+    private int[] layouts = {R.layout.home_first_slide,R.layout.home_second_slide,R.layout.home_third_slide};
+    private MpagerAdapter mpagerAdapter;
 
 
     @Override
@@ -47,6 +52,11 @@ Intent AboutIntent;
         setContentView(R.layout.activity_nav_drawer);
         setTitle("UPES-CSI");
 
+
+        mPager = (ViewPager) findViewById(R.id.viewPager);
+        mpagerAdapter = new MpagerAdapter(layouts,this);
+        mPager.setAdapter(mpagerAdapter);
+
         navigationView=(NavigationView)findViewById(R.id.nav_view);
         headerView=navigationView.getHeaderView(0);
 
@@ -54,6 +64,7 @@ Intent AboutIntent;
 
         ProfileIntent = new Intent(getApplicationContext() , profile.class);
         AboutIntent = new Intent(getApplicationContext() , aboutAct.class);
+        HomeIntent = new Intent(getApplicationContext(),navDrawer.class);
 
         tname=(TextView) headerView.findViewById(R.id.txtname);
         tname.setText(user.getDisplayName()+"");
@@ -138,7 +149,7 @@ Intent AboutIntent;
         if (id == R.id.nav_profile) {
             startActivity(ProfileIntent);
         } else if (id == R.id.nav_home) {
-
+            startActivity(HomeIntent);
         } else if (id == R.id.nav_about) {
             startActivity(AboutIntent);
         } else if (id == R.id.nav_blog) {
