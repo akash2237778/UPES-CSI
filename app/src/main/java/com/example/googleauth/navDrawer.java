@@ -165,7 +165,7 @@ Intent ContactIntent;
         }else if (id == R.id.nav_contact) {
             startActivity(ContactIntent);
         }else if (id == R.id.nav_share) {
-
+            Toast.makeText(navDrawer.this, "Feature not available yet", Toast.LENGTH_SHORT).show();
         }
         else if (id == R.id.logout) {
             FirebaseAuth.getInstance().signOut();

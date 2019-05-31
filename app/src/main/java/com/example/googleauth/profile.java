@@ -1,8 +1,11 @@
 package com.example.googleauth;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ public class profile extends AppCompatActivity {
     TextView EmailTxtv;
     TextView PhoneTxtv;
     ImageView UserImage;
+    Button EditButton;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -46,10 +50,17 @@ public class profile extends AppCompatActivity {
         NameTxtV.setText(user.getDisplayName());
         EmailTxtv.setText(user.getEmail());
 
+        UserImage.setImageResource(R.drawable.com_facebook_profile_picture_blank_portrait);
 
         new ImageLoadTask(user.getPhotoUrl().toString(), UserImage).execute();
 
-
+        EditButton = (Button) findViewById(R.id.EditProfile);
+        EditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "Feature not available yet", Snackbar.LENGTH_LONG);
+            }
+        });
 
 
          databaseReference.child(user.getUid()).addValueEventListener(new ValueEventListener() {
