@@ -35,6 +35,7 @@ FirebaseUser user;
 NavigationView navigationView;
 View headerView;
 Intent ProfileIntent;
+Intent AboutIntent;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
@@ -52,6 +53,7 @@ Intent ProfileIntent;
         user=FirebaseAuth.getInstance().getCurrentUser();
 
         ProfileIntent = new Intent(getApplicationContext() , profile.class);
+        AboutIntent = new Intent(getApplicationContext() , aboutAct.class);
 
         tname=(TextView) headerView.findViewById(R.id.txtname);
         tname.setText(user.getDisplayName()+"");
@@ -138,7 +140,7 @@ Intent ProfileIntent;
         } else if (id == R.id.nav_home) {
 
         } else if (id == R.id.nav_about) {
-
+            startActivity(AboutIntent);
         } else if (id == R.id.nav_blog) {
 
         } else if (id == R.id.nav_team) {

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".profile"></activity>
+        <activity android:name=".aboutAct"></activity>
+        <activity android:name=".profile" />
         <activity
             android:name=".navDrawer"
             android:label="@string/title_activity_nav_drawer"
