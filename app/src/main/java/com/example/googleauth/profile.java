@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,7 +59,7 @@ public class profile extends AppCompatActivity {
         EditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Feature not available yet", Snackbar.LENGTH_LONG);
+                Toast.makeText(profile.this, "Feature not available yet", Toast.LENGTH_SHORT).show();
             }
         });
 
