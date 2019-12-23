@@ -26,10 +26,12 @@ public class PostDisplay extends AppCompatActivity {
     ImageView InstaImage;
     ImageView FBImage;
     ImageView TwitterImage;
+    ImageView WhatsappImage;
     String Pid;
     String InstaUrl;
     String FBUrl;
     String TwitterUrl;
+    String WhatsappUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class PostDisplay extends AppCompatActivity {
         InstaImage = findViewById(R.id.InstaImage);
         FBImage = findViewById(R.id.FBImage);
         TwitterImage = findViewById(R.id.TwitterImage);
+        WhatsappImage = findViewById(R.id.whatsappImg);
+
 
 
         Pid = getIntent().getStringExtra("Pid");
@@ -61,6 +65,7 @@ public class PostDisplay extends AppCompatActivity {
                 InstaUrl = dataSnapshot.child("InstaLink").getValue().toString();
                 FBUrl = dataSnapshot.child("FBLink").getValue().toString();
                 TwitterUrl = dataSnapshot.child("TwitterLink").getValue().toString();
+                WhatsappUrl = "whatsapp://send?text=*"+dataSnapshot.child("Title").getValue().toString()  +"*" + "\n"+dataSnapshot.child("Content").getValue().toString()+ "\n"+ "\n"+ "Facebook :" + FBUrl+  "\n"+ "Insta :" + InstaUrl+ "\n"+ "Twitter :" + TwitterUrl;
 
 
 
@@ -94,6 +99,14 @@ public class PostDisplay extends AppCompatActivity {
             public void onClick(android.view.View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(TwitterUrl));
+                startActivity(i);
+            }
+        });
+        WhatsappImage.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(WhatsappUrl));
                 startActivity(i);
             }
         });

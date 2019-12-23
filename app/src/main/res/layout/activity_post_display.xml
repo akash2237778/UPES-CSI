@@ -96,7 +96,7 @@
         app:srcCompat="@drawable/com_facebook_favicon_blue" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/whatsappImg"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="44dp"
@@ -112,7 +112,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintStart_toEndOf="@+id/whatsappImg"
         app:layout_constraintTop_toTopOf="@+id/FBImage"
         app:layout_constraintVertical_bias="0.002"
         app:srcCompat="@drawable/insta" />
