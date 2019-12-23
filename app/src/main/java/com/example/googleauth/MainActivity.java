@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.setApplicationId("1303933753107188");
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         loginIntent = new Intent(getApplicationContext(), fbLogin.class);
-        navDrawIntent=new Intent(getApplicationContext(),FormActivity.class);
+        navDrawIntent=new Intent(getApplicationContext(),RecyclerViewList.class);
 
 
 

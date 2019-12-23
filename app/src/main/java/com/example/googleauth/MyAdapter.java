@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProgramViewHolder>{
@@ -63,7 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProgramViewHolder>
             //            textView = (TextView) itemView.findViewById(R.id.tusImageView);
             PidView = (TextView) itemView.findViewById(R.id.PidtextView);
             textView = (TextView) itemView.findViewById(R.id.TitletextView);
-            ContentDataView = (TextView) itemView.findViewById(R.id.textView2);
+            ContentDataView = (TextView) itemView.findViewById(R.id.ContentTextView);
             //textAddressView = (TextView) itemView.findViewById(R.id.InstaLink);
             //textStatusView = (TextView) itemView.findViewById(R.id.statusView);
 

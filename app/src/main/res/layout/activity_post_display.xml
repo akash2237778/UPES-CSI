@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/layout_border"
-    android:paddingTop="5dp">
-
+    android:paddingTop="5dp"
+    tools:context=".PostDisplay">
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="61dp"
@@ -69,5 +69,52 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.014"
         tools:text="@tools:sample/date/hhmm" />
+
+    <ImageView
+        android:id="@+id/TwitterImage"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.404"
+        app:layout_constraintStart_toEndOf="@+id/InstaImage"
+        app:layout_constraintTop_toTopOf="@+id/InstaImage"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/twittersized" />
+
+    <ImageView
+        android:id="@+id/FBImage"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="144dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ContentTextView"
+        app:layout_constraintVertical_bias="0.065"
+        app:srcCompat="@drawable/com_facebook_favicon_blue" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        app:layout_constraintStart_toEndOf="@+id/FBImage"
+        app:layout_constraintTop_toTopOf="@+id/FBImage"
+        app:srcCompat="@drawable/whatsapp" />
+
+    <ImageView
+        android:id="@+id/InstaImage"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/FBImage"
+        app:layout_constraintVertical_bias="0.002"
+        app:srcCompat="@drawable/insta" />
 
 </android.support.constraint.ConstraintLayout>
