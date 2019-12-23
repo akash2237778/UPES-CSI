@@ -10,19 +10,15 @@ import android.widget.TextView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProgramViewHolder>{
 
-    private  String[] userNameData;
-    private String[] userServiceData;
-    private String[] userAddressData;
-    private String[] userStatusText;
-    private int[] userImageStatusText;
+    private  String[] PidData;
+    private  String[] TitleData;
+    private String[] ContentData;
 
 
-    public MyAdapter(String[] data , String[] ServiceData , String[] addressData , String[] StatusText, int[] ImageStatusText){
-        this.userNameData = data;
-        this.userServiceData = ServiceData;
-        this.userAddressData = addressData;
-        this.userStatusText = StatusText;
-        this.userImageStatusText = ImageStatusText;
+    public MyAdapter(String[] Pid ,String[] titleData , String[] contentData ){
+        this.PidData = Pid;
+        this.TitleData = titleData;
+        this.ContentData = contentData;
     }
 
 
@@ -37,43 +33,39 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProgramViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull ProgramViewHolder programViewHolder, int i) {
-        String name = userNameData[i];
-        String service = userServiceData[i];
-        String address = userAddressData[i];
-        String statusT = userStatusText[i];
-        int imageStatusT = userImageStatusText[i];
+        String pid = PidData[i];
+        String name = TitleData[i];
+        String service = ContentData[i];
 
 
+        programViewHolder.PidView.setText(pid);
         programViewHolder.textView.setText(name);
-        programViewHolder.textDataView.setText(service);
-        programViewHolder.textAddressView.setText(address);
-        programViewHolder.textStatusView.setText(statusT);
+        programViewHolder.ContentDataView.setText(service);
 
-        if(imageStatusT == 0){programViewHolder.imgview.setImageResource(R.drawable.bulebutton); }
-        else if(imageStatusT == 1){programViewHolder.imgview.setImageResource(R.drawable.yellowbutton); }
-        else if(imageStatusT == 2){programViewHolder.imgview.setImageResource(R.drawable.greenbutton); }
-    }
+
+         }
 
     @Override
     public int getItemCount() {
-        return  userNameData.length;
+        return  TitleData.length;
     }
 
     public class ProgramViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgview;
+
+        TextView PidView;
         TextView textView;
-        TextView textDataView;
-        TextView textAddressView;
-        TextView textStatusView;
+        TextView ContentDataView;
 
         public ProgramViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imgview = (ImageView) itemView.findViewById(R.id.statusImageView);
+            //imgview = (ImageView) itemView.findViewById(R.id.staidtextView);
+            //            textView = (TextView) itemView.findViewById(R.id.tusImageView);
+            PidView = (TextView) itemView.findViewById(R.id.PidtextView);
             textView = (TextView) itemView.findViewById(R.id.TitletextView);
-            textDataView = (TextView) itemView.findViewById(R.id.textView2);
-            textAddressView = (TextView) itemView.findViewById(R.id.InstaLink);
-            textStatusView = (TextView) itemView.findViewById(R.id.statusView);
+            ContentDataView = (TextView) itemView.findViewById(R.id.textView2);
+            //textAddressView = (TextView) itemView.findViewById(R.id.InstaLink);
+            //textStatusView = (TextView) itemView.findViewById(R.id.statusView);
 
         }
     }
