@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     Intent loginIntent;
-    Intent navDrawIntent;
+   public static Intent navDrawIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.setApplicationId("1303933753107188");
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         loginIntent = new Intent(getApplicationContext(), fbLogin.class);
-        navDrawIntent=new Intent(getApplicationContext(),RecyclerViewList.class);
+        navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
 
 
 

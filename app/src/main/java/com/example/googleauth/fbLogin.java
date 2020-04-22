@@ -73,7 +73,7 @@ String phoneNumber;
 
         loginButton = (LoginButton) findViewById(R.id.btnFB);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        signUpPhoneTxt = (EditText)findViewById(R.id.phoneEditText);
+        //signUpPhoneTxt = (EditText)findViewById(R.id.phoneEditText);
 
 
         navDrawIntent=new Intent(getApplicationContext(),navDrawer.class);
@@ -107,10 +107,11 @@ String phoneNumber;
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
-                    if (signUpPhoneTxt.getText().length() == 10) {
-                       UpdateFireBase(user , signUpPhoneTxt.getText().toString());
-                         goMainScreen();
-                    }
+                    goMainScreen();
+//                    if (signUpPhoneTxt.getText().length() == 10) {
+ //                      UpdateFireBase(user , signUpPhoneTxt.getText().toString());
+  //                       goMainScreen();
+   //                 }
                 }
             }
         };

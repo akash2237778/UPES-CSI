@@ -56,9 +56,9 @@ Intent ContactIntent;
         setTitle("UPES-CSI");
 
 
-        mPager = (ViewPager) findViewById(R.id.viewPager);
-        mpagerAdapter = new MpagerAdapter(layouts,this);
-        mPager.setAdapter(mpagerAdapter);
+       // mPager = (ViewPager) findViewById(R.id.viewPager);
+//        mpagerAdapter = new MpagerAdapter(layouts,this);
+//        mPager.setAdapter(mpagerAdapter);
 
         navigationView=(NavigationView)findViewById(R.id.nav_view);
         headerView=navigationView.getHeaderView(0);
@@ -155,7 +155,7 @@ Intent ContactIntent;
         if (id == R.id.nav_profile) {
             startActivity(ProfileIntent);
         } else if (id == R.id.nav_home) {
-            startActivity(HomeIntent);
+            startActivity(MainActivity.navDrawIntent);
         } else if (id == R.id.nav_about) {
             startActivity(AboutIntent);
         } else if (id == R.id.nav_blog) {
@@ -177,6 +177,10 @@ Intent ContactIntent;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void registerOnClick(View view){
+        startActivity(new Intent(getApplicationContext(),RegisterEvent.class));
     }
 
 }

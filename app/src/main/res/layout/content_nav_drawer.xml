@@ -8,22 +8,19 @@
     tools:context=".navDrawer"
     tools:showIn="@layout/app_bar_nav_drawer">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp">
+        android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
+        <Button
+            android:id="@+id/registerTH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="registerOnClick"
+            android:text="Register For Treasure Hunt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 </RelativeLayout>
